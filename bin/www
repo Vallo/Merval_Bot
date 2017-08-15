@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+var fs = require('fs');
 var privateKey = fs.readFileSync( '/root/YOURPRIVATE.key' );
 var certificate = fs.readFileSync( '/root/YOURPUBLIC.pem' );
 var app = require('../app');
