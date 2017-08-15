@@ -7,9 +7,5 @@ router.post('/' + config.bot, function(req, res, next) {
   console.log(req.body)
 });
 
-router.get('/test', function(req, res, next) {
-  res.send('/' + config.bot);
-  
-});
 
 module.exports = router;
