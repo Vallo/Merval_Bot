@@ -9,6 +9,8 @@ var certificate = fs.readFileSync( '/root/YOURPUBLIC.pem' );
 var app = require('../app');
 var debug = require('debug')('merval:server');
 var http = require('http');
+var https = require('https');
+var credentials = {key: privateKey, cert: certificate};
 
 /**
  * Get port from environment and store in Express.
@@ -21,15 +23,15 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer({
-    key: privateKey,
-    cert: certificate},app);
+var server = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port);
+httpsServer.listen(443);
 server.on('error', onError);
 server.on('listening', onListening);
 
