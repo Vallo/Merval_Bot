@@ -3,7 +3,8 @@
 /**
  * Module dependencies.
  */
-
+var privateKey = fs.readFileSync( '/root/YOURPRIVATE.key' );
+var certificate = fs.readFileSync( '/root/YOURPUBLIC.pem' );
 var app = require('../app');
 var debug = require('debug')('merval:server');
 var http = require('http');
@@ -19,7 +20,9 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = http.createServer({
+    key: privateKey,
+    cert: certificate},app);
 
 /**
  * Listen on provided port, on all network interfaces.
