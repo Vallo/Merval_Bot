@@ -29,4 +29,15 @@ bot.onText(/\/love/, function onLoveText(msg) {
   };
   bot.sendMessage(msg.chat.id, 'Do you love me?', opts);
 });
+
+bot.onText('/\/start/', function onLoveText(msg) {
+  const opts = {
+    reply_to_message_id: msg.message_id
+  };
+  bot.onReplyToMessage(msg.chat.id, msg.message_id, function (){
+  	bot.sendMessage(msg.chat.id, 'Hola de nuevo!', opts);
+  })
+  bot.sendMessage(msg.chat.id, 'Hola!', opts);
+});
+
 module.exports = router;
