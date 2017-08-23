@@ -31,7 +31,7 @@ bot.onText(/\/start/, function onStartText(msg) {
 });
 
 bot.onText(/\/bitcoin/, function onStartText(msg) {
-  bot.sendMessage(msg.chat.id, 'Ultima cotización: ' + bitcoin.price, opts);
+  bot.sendMessage(msg.chat.id, 'Ultima cotización: ' + bitcoin.price);
 });
 
 module.exports = router;
