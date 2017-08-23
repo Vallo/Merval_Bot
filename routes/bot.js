@@ -32,7 +32,8 @@ bot.onText(/\/love/, function onLoveText(msg) {
 
 bot.onText(/\/start/, function onStartText(msg) {
   const opts = {
-    reply_to_message_id: msg.message_id
+    reply_to_message_id: msg.message_id,
+    reply_markup: {"force_reply": true}
   };
   bot.sendMessage(msg.chat.id, 'Hola!', opts).then(function(sended){
   	var chatId = sended.chat.id;
