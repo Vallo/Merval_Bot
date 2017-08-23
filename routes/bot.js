@@ -9,4 +9,8 @@ router.post('/bot' + config.token, function(req, res, next) {
 	console.log(req.body);
 });
 
+router.get('/test', function(req, res, next) {
+	res.send('ok');
+	console.log('ok');
+});
 module.exports = router;
