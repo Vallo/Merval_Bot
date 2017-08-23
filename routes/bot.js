@@ -4,6 +4,7 @@ var config = require('../config.js');
 const TOKEN = config.token;
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(TOKEN);
+const bitcoin = require('../domain/bitcoin.js');
 
 router.post('/' + config.token, function(req, res, next) {
 	try {
@@ -29,22 +30,8 @@ bot.onText(/\/start/, function onStartText(msg) {
   });
 });
 
-// Handle callback queries
-bot.on('callback_query', function onCallbackQuery(callbackQuery) {
-  const action = callbackQuery.data;
-  const msg = callbackQuery.message;
-  const opts = {
-    chat_id: msg.chat.id,
-    message_id: msg.message_id,
-  };
-  let text;
-
-  if (action === 'edit') {
-    text = 'Edited Text';
-  }
-
-  bot.editMessageText(text, opts);
+bot.onText(/\/bitcoin/, function onStartText(msg) {
+  bot.sendMessage(msg.chat.id, 'Ultima cotización: ' + bitcoin.price, opts);
 });
-
 
 module.exports = router;
