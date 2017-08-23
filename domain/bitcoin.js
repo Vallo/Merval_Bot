@@ -1,4 +1,5 @@
 var Bitstamp = require('bitstamp-ws');
+
 var price;
 var ws = new Bitstamp();
 ws.on('trade', function(trade) {
@@ -6,8 +7,6 @@ ws.on('trade', function(trade) {
 });
 console.log('Bitcoin monitor iniciado');
 
-bit.price = function(){
+exports.lastPrice = function(){
 	return price;
 }
-
-module.exports = bit;
