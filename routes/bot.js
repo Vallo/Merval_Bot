@@ -4,9 +4,15 @@ var config = require('../config.js');
 
 
 router.post('/' + config.token, function(req, res, next) {
-	bot.processUpdate(req.body);
-	res.sendStatus(200);
-	console.log(req.body);
+	try {
+	    bot.processUpdate(req.body);
+		res.sendStatus(200);
+		console.log(req.body);
+	} 
+	catch (err) {
+    // handle the error safely
+    console.log(err)
+	}
 });
 
 router.get('/test', function(req, res, next) {
