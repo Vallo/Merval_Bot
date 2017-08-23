@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('./config.js');
 const TOKEN = config.token;
 const url = 'https://' + config.Ip;
 const port = 433;
@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
+console.log(TOKEN);
+console.log(`${url}/bot${TOKEN}`);
 
 // This informs the Telegram servers of the new webhook.
 bot.setWebHook(`${url}/bot${TOKEN}`);
@@ -21,6 +23,7 @@ app.use(bodyParser.json());
 app.post(`/bot${TOKEN}`, (req, res) => {
   bot.processUpdate(req.body);
   res.sendStatus(200);
+  console.log(req.body);
 });
 
 // Start Express Server
