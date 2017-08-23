@@ -14,6 +14,7 @@ var botRoute = require('./routes/bot');
 //init bot
 const bot = new TelegramBot(TOKEN);
 bot.setWebHook(`${url}/${TOKEN}`);
+console.log(`${url}/${TOKEN}`);
 
 
 var app = express();
