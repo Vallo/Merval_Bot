@@ -1,44 +1,29 @@
-var express = require('express');
-var path = require('path');
-//var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const TelegramBot = require('node-telegram-bot-api');
+const config = require('./config.js');
 
-//var index = require('./routes/index');
-var bot = require('./routes/bot')
-var app = express();
+const bot = new TelegramBot(config.bot);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+bot.setWebHook(config.Ip, {
+  certificate: '/root/crt.pem', // Path to your crt.pem
+});
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, (msg, match) => {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
 
-//app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever"
 
-app.use('/', bot);
-
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  res.send('Error');
-  err.status = 404;
-  next(err);
+  // send back the matched "whatever" to the chat
+  bot.sendMessage(chatId, resp);
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// Listen for any kind of message. There are different kinds of
+// messages.
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
 
-  // render the error page
-  res.status(err.status || 500);
-  res.send('error');
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, 'Received your message');
 });
-
-module.exports = app;
-
-
