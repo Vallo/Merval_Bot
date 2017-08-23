@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config.js');
+const TOKEN = config.token;
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(TOKEN);
 
