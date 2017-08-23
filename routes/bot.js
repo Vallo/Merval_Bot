@@ -30,7 +30,7 @@ bot.onText(/\/love/, function onLoveText(msg) {
   bot.sendMessage(msg.chat.id, 'Do you love me?', opts);
 });
 
-bot.onText('/\/start/', function onStartText(msg) {
+bot.onText(/\/start/, function onStartText(msg) {
   const opts = {
     reply_to_message_id: msg.message_id
   };
