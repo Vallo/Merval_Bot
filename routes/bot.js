@@ -38,7 +38,7 @@ bot.onText(/\/start/, function onStartText(msg) {
   	var chatId = sended.chat.id;
     var messageId = sended.message_id;
     bot.onReplyToMessage(chatId, messageId, function(message) {
-        console.log('Lero lero', message.text);
+        bot.sendMessage(chatId, "Lero lero");
     });
   });
 });
