@@ -30,14 +30,17 @@ bot.onText(/\/love/, function onLoveText(msg) {
   bot.sendMessage(msg.chat.id, 'Do you love me?', opts);
 });
 
-bot.onText('/\/start/', function onLoveText(msg) {
+bot.onText('/\/start/', function onStartText(msg) {
   const opts = {
     reply_to_message_id: msg.message_id
   };
-  bot.onReplyToMessage(msg.chat.id, msg.message_id, function (){
-  	bot.sendMessage(msg.chat.id, 'Hola de nuevo!', opts);
-  })
-  bot.sendMessage(msg.chat.id, 'Hola!', opts);
+  bot.sendMessage(msg.chat.id, 'Hola!', opts).then(function(sended){
+  	var chatId = sended.chat.id;
+    var messageId = sended.message_id;
+    bot.onReplyToMessage(chatId, messageId, function(message) {
+        console.log('Lero lero', message.text);
+    });
+  });
 });
 
 module.exports = router;
