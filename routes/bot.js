@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config.js');
-
+const bot = new TelegramBot(TOKEN);
 
 router.post('/' + config.token, function(req, res, next) {
 	try {
