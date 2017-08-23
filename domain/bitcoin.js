@@ -6,4 +6,8 @@ ws.on('trade', function(trade) {
 });
 console.log('Bitcoin monitor iniciado');
 
-module.exports = ws;
+bit.price = function(){
+	return price;
+}
+
+module.exports = bit;
