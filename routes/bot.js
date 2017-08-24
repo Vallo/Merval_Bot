@@ -21,7 +21,7 @@ bot.onText(/\/start/, function onStartText(msg) {
   const opts = {
     reply_markup: {"force_reply": true}
   };
-  bot.sendMessage(msg.chat.id, 'Hola!' + msg.from.first_name, opts).then(function(sended){
+  bot.sendMessage(msg.chat.id, 'Hola ' + msg.from.first_name + '!', opts).then(function(sended){
   	var chatId = sended.chat.id;
     var messageId = sended.message_id;
     bot.onReplyToMessage(chatId, messageId, function(message) {
@@ -31,7 +31,12 @@ bot.onText(/\/start/, function onStartText(msg) {
 });
 
 bot.onText(/\/bitcoin/, function onStartText(msg) {
-  bot.sendMessage(msg.chat.id, 'Ultima cotización: ' + bitcoin.lastPrice());
+  bot.sendMessage(msg.chat.id, 'Valor bitstamp: ' + bitcoin.lastPrice());
 });
+
+bot.onText(/\/ayuda/, function onStartText(msg) {
+  bot.sendMessage(msg.chat.id, 'Escribe /bitcoin para saber la cotización del bitstamp \n proximamente precios Merval y alertas configurables en tiempo real.');
+});
+
 
 module.exports = router;
