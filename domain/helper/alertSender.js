@@ -1,0 +1,1 @@
+exports.Alert = function(chatId, price)
