@@ -30,11 +30,11 @@ const opts = {
 
 bot.onText(/\/alertas/, function onStartText(msg) {
   //Obtener alertas activasdel usuario e imprimirlas
-  bot.sendMessage(msg.chat.id, 'Sin implementar', opts)
+  bot.sendMessage(msg.chat.id, 'Sin implementar')
 });
 
 bot.onText(/\/start/, function onStartText(msg) {
-  bot.sendMessage(msg.chat.id, 'Hola ' + msg.from.first_name + '! Escribe /ayuda para más información', opts)
+  bot.sendMessage(msg.chat.id, 'Hola ' + msg.from.first_name + '! Escribe /ayuda para más información')
 });
 
 bot.onText(/\/bitcoin/, function onStartText(msg) {

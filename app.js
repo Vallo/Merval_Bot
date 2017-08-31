@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 var botRoute = require('./routes/bot');
 
 const bot = new TelegramBot(TOKEN);
-bot.setWebHook(`${url}/${TOKEN}`);
+//bot.setWebHook(`${url}/${TOKEN}`);
 
 var app = express();
 app.use(logger('dev'));
