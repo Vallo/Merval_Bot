@@ -37,7 +37,7 @@ exports.CheckAlerts = function(asset, price){
 }
 
 function CloseAlert(alertId, chatId, asset){
-	client.srem("Asset:" + asset, chatId);
+	//client.srem("Asset:" + asset, chatId); //todo delete only when size = 0
 	client.srem("ChatId:" + chatId, alertId);
 	client.del("Alert:" + alertId);
 	db.Remove(alertId);
